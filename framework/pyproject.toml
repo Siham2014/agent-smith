@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.33,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agent-smith-framework"
+version = "0.1.0"
+description = "Independent framework-based autonomous coding agent experiment"
+readme = "README.md"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+    "pydantic>=2.14.3,<3",
+    "pydantic-settings==2.15.0",
+    "langchain-core>=1.7.6,<2",
+    "langchain-google-genai>=4.4.3,<5",
+    "langgraph>=1.2.20,<1.3",
+]
+
+[project.scripts]
+agent-smith = "agent_smith.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=9.2,<10"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agent_smith"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
